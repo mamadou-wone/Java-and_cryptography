@@ -19,8 +19,10 @@ public class Mini_project_KTMMM {
     
 
     public static void main(String[] args) throws Exception {
-        int number = NombrePremier();
-        System.out.println(number);
+        formulaire form = new formulaire();
+        form.setVisible(true);
+    // int number = NombrePremier();
+       // System.out.println(number);
         
         
         

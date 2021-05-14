@@ -52,7 +52,6 @@ public class formulaire extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("                           BIENVENUE CHEZ TDSI BANK");
@@ -100,7 +99,6 @@ public class formulaire extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setForeground(new java.awt.Color(102, 153, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mini_project_ktmmm/tick-mark.png"))); // NOI18N
-        jButton1.setActionCommand("");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -111,7 +109,7 @@ public class formulaire extends javax.swing.JFrame {
         label1.setText("label1");
         jPanel1.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1039, 0, 0, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\megaw\\Desktop\\mini_project_KTMMM\\mini_project_KTMMM\\src\\mini_project_ktmmm\\banniere.jpg")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mini_project_ktmmm/banniere.jpg"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 390, 351));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,23 +139,28 @@ public class formulaire extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         GenCode genCode = new GenCode();
-        String prenom = jTextField1.getText();
-        String nom = jTextField2.getText();
-        String telephone = jTextField3.getText();
-        String code = genCode.ChooseLetter(prenom, nom, telephone);
-        System.out.println("Code initial : "  + code);
-        String NewCode = genCode.ShuffleLetter(code);
-        System.out.println("Code aprés permuttation : "  + NewCode);
-        if ("".equals(prenom) ||  "".equals(nom) || "".equals(telephone)) {
-           JFrame jFrame = new JFrame();
+        
+            String prenom = jTextField1.getText();
+            String nom = jTextField2.getText();
+            String telephone = jTextField3.getText();
+        if(genCode.verifNumber(telephone.toCharArray()) && genCode.verifLetters(genCode.ConcateElement(prenom).toCharArray()) && genCode.verifLetters(genCode.ConcateElement(nom).toCharArray())){
+            String code = genCode.ChooseLetter(prenom, nom, telephone);
+            System.out.println("Code initial : "  + code);
+            String InitialCode = genCode.ShuffleLetter(code);
+            System.out.println("Code aprés permuttation : "  + InitialCode);
+            if ("".equals(prenom) ||  "".equals(nom) || "".equals(telephone)) {
+            JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Aucun Champ doit être vide","ATTENTION!", JOptionPane.WARNING_MESSAGE);
         }else{
             this.dispose();
             Chiffrement chiffrement = new Chiffrement();
-            chiffrement.setText(NewCode);
+            chiffrement.setText(InitialCode);
             chiffrement.setVisible(true);
             
         }
+        }
+
+    
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

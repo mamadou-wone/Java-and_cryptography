@@ -34,7 +34,15 @@ public class Cipher {
         }
         return premier;
     }
-
+    public static boolean isInvertible(int number){
+        boolean inverse = false;
+        for (int i = 1; i < 36; i++) {
+            if ((number * i) % 36 == 1){
+                inverse = true;
+            }
+        }
+        return inverse;
+    }
     public static ArrayList<Integer> getKey(){
 //        L'equation est de la forme y = ax + b
         ArrayList<Integer> key = new ArrayList<Integer>();
@@ -42,7 +50,7 @@ public class Cipher {
         int b = genNumber();
         boolean start = true;
         while (start){
-            if (a == b || !isPremier(a) || !isPremier(b) || a == 0 || b == 0) {
+            if (a == b || !isPremier(a) || !isInvertible(a) || !isPremier(b) || a == 0 || b == 0) {
                 a = genNumber();
                 b = genNumber();
             }else {

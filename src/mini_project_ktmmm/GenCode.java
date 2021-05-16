@@ -46,7 +46,7 @@ class GenCode {
             allLettList.add(letter);
         }
         for (Character c : list) {
-            if (allLettList.contains(Character.toString(c).toLowerCase())) {
+            if (allLettList.contains(Character.toString(c).toLowerCase()) || allLettList.size() == 0) {
                 retour = true;
             }else{
             retour = false;
@@ -65,7 +65,7 @@ class GenCode {
         for (int i = 0; i < 10; i++) {
             allNum.add(i);
         }
-         if(num_list.length != 9){
+         if(num_list.length != 9 || num_list == null){
                System.out.println("Respecter les données de saisie");
                  JFrame jFrame = new JFrame();
                  JOptionPane.showMessageDialog(jFrame, "Respecter les Données dans le champ numéro","ATTENTION!", JOptionPane.WARNING_MESSAGE);

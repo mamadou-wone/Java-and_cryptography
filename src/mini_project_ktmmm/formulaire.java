@@ -143,6 +143,10 @@ public class formulaire extends javax.swing.JFrame {
             String prenom = jTextField1.getText();
             String nom = jTextField2.getText();
             String telephone = jTextField3.getText();
+            if(prenom.toCharArray().length == 0 || nom.toCharArray().length == 0){
+                JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Aucun Champ doit être vide","ATTENTION!", JOptionPane.WARNING_MESSAGE);
+            }
         if(genCode.verifNumber(telephone.toCharArray()) && genCode.verifLetters(genCode.ConcateElement(prenom).toCharArray()) && genCode.verifLetters(genCode.ConcateElement(nom).toCharArray())){
             String code = genCode.ChooseLetter(prenom, nom, telephone);
             System.out.println("Code initial : "  + code);
